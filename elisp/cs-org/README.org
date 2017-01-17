@@ -1,0 +1,12 @@
+#+title: cs-org.el --- Utilities for Org mode.
+
+* Tips
+Use either tangle:
+#+begin_src
+M-x cs-org-babel-tangle-and-open
+M-x eval-buffer
+#+end_src
+Or
+#+begin_src
+M-x cs-org-file-to-emacs-package-with-install
+#+end_src

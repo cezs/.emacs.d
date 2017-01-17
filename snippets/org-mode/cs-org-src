@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: cs-src
+# key: cs-src
+# --
+#+begin_src $1 :tangle $2 :padline no :comments link
+$3
+#+end_src
+
+$0

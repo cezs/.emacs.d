@@ -1,0 +1,33 @@
+#+title: .emacs.d
+
+The =init.el= employs [[https:github.com/jwiegley/use-package][use-package]] for package management and configuration.
+The =emacs.d= includes custom [[file:snippets/][snippets]], [[file:elisp/][minor modes and commands]], [[file:dict/][auto-complete mode dictionaries]] and [[file:themes/][themes]].
+
+* Installation
+To automatically create symbolic links and backup files in existing =emacs.d= directory, navigate to this repository's directory and use the following script:
+#+begin_example
+$ ./link.sh
+#+end_example
+Note that the backed-up files have appended tilde character at the end of the file names. 
+
+* Definitions
+- [[file:dict/][dict]] custom auto-complete dictionaries 
+  - [[file:dict/opencl-mode][opencl-mode]] custom auto-complete dictionary for OpenCL
+- [[file:elisp/][elisp]] custom emacs packages and sources
+  - [[file:elisp/cs-awker-mm/][cs-awker-mm]] minor mode for editing column based data with /awk/
+  - [[file:elisp/cs-global.el][cs-global.el]] various functions to be used across all kind of buffers
+  - [[file:elisp/cs-nixer-mm/][cs-nixer-mm]] minor mode encapsulating various convenience GNU utils
+  - [[file:elisp/cs-org/][cs-org]] custom functions for [[https:github.com/jwiegley/org-mode][Org mode]]
+- [[file:snippets/][snippets]] custom snippets directory
+  - [[file:snippets/opencl][OpenCL]] custom snippets for /OpenCL/
+  - [[file:snippets/opengl][OpenGL]] custom snippets for /OpenGL/
+  - [[file:snippets/org-mode][org-mode]] custom snippets for /org-mode/
+  - [[file:snippets/shell][shell]] custom snippets for /shell/
+  - [[file:snippets/tex][TeX]] custom snippets for /TeX/
+- [[file:themes/][themes]] custom themes directory
+- [[file:init.el][init.el]] emacs configuration file
+- [[file:link.sh][link.sh]] create symlinks in home directory to the content of =emacs.d= directory
+- [[file:README.org][README.org]] current file
+
+* Tips
+Use the ~pp-macroexpand-last-sexp~ in the [[file:init.el][init.el]] to see macro expansion of the ~use-package~.

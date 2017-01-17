@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cs-tex-frac
+# key: cs-tex-frac
+# --
+\frac{$1}{$2}

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: cs-org-quote
+# key: cs-org-quote
+# --
+#+begin_quote
+$1
+#+end_quote
+$0

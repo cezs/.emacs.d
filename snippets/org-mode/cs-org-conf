@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: cs-org-conf
+# key: cs-org-conf
+# --
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+OPTIONS: author:t c:nil creator:nil d:(not "LOGBOOK") date:t e:t
+#+OPTIONS: email:nil f:t inline:t num:t p:nil pri:nil prop:nil stat:t
+#+OPTIONS: tags:t tasks:t tex:t timestamp:t title:t toc:t todo:nil |:t
+#+TITLE: $1
+#+DATE: $2
+#+AUTHOR: $3
+#+EMAIL: $4
+#+LANGUAGE: en
+#+SELECT_TAGS: export, noexport
+#+EXCLUDE_TAGS: 
+#+CREATOR: `(emacs-version)` (Org mode `(org-version)`)
+
+$0

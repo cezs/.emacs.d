@@ -1,0 +1,5 @@
+* Definitions
+- [[file:cs-awker-mm/][cs-awker-mm]] minor mode for editing column based data with /awk/
+- [[file:elisp/cs-nixer-mm/][cs-nixer-mm]] minor mode encapsulating various convenience GNU utils
+- [[file:elisp/cs-org/][cs-org]] custom functions for [[https:github.com/jwiegley/org-mode][Org mode]]
+- [[file:elisp/cs-global.el][cs-global.el]] various functions to be used across all kind of buffers

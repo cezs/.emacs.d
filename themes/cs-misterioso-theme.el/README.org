@@ -1,0 +1,8 @@
+* cs-misterioso-theme.el
+Fork of [[https:github.com/jwiegley/emacs-release/blob/master/etc/themes/misterioso-theme.el][misterioso-theme.el]] with the addition of support for various modes.
+
+* Screenshot
+[[./sc.png]]
+
+* Supports
+- Org mode

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cs-opencl-create-context
+# key: cs-opencl-create-context
+# --
+cl_context ${1:context} = clCreateContext(${2:cl_context_properties *properties}, ${3:cl_uint num_devices}, ${4:const cl_device_id *devices}, ${5:void *pfn_notify (const char *errinfo, const void *private_info, size_t cb, void *user_data)}, ${6:void *user_data}, ${7:cl_int *errcode_ret});

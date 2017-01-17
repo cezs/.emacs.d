@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: cs-src-cc
+# key: cs-src-cc
+# --
+#+begin_src C++ :flags -std=c++11 :tangle $1 :padline no :comments link :main no
+$2
+#+end_src
+
+$0

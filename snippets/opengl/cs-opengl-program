@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: cs-opengl-program
+# key: cs-opengl-program
+# --
+GLint linked = GL_FALSE;
+program = glCreateProgram();
+glAttachShader(program, {vertex_shader:$1});
+glAttachShader(program, {fragment_shader:$2});
+glLinkProgram(program);
+glGetProgramiv(program, GL_LINK_STATUS, &linked);
+if (!linked) {
+	cerr << "glLinkProgram:";
+	print_log(program);
+	return false;
+}

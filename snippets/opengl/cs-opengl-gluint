@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: cs-opengl-buff
+# key: cs-opengl-
+# --
+glGenBuffers(1, &"$1");
+glBindBuffer($2, $1);
+glBufferData($2, sizeof($3), $3, $4);

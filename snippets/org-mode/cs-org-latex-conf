@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: cs-latex-conf
+# key: cs-latex-conf
+# --
+#+LATEX_CLASS: ${1:article}
+#+LATEX_CLASS_OPTIONS: $2
+#+LATEX_HEADER: $3
+#+LATEX_HEADER_EXTRA: $4
+#+DESCRIPTION: $5
+#+KEYWORDS: $6
+#+SUBTITLE: $7
+#+DATE: \today
+
+$0
