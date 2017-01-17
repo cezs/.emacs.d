@@ -17,13 +17,13 @@ Note that the backed-up files have appended tilde character at the end of the fi
   - [[file:elisp/cs-awker-mm/][cs-awker-mm]] minor mode for editing column based data with /awk/
   - [[file:elisp/cs-global.el][cs-global.el]] various functions to be used across all kind of buffers
   - [[file:elisp/cs-nixer-mm/][cs-nixer-mm]] minor mode encapsulating various convenience GNU utils
-  - [[file:elisp/cs-org/][cs-org]] custom functions for [[https:github.com/jwiegley/org-mode][Org mode]]
+  - [[file:elisp/cs-org/][cs-org]] custom functions for [[https://github.com/jwiegley/org-mode][Org mode]]
 - [[file:snippets/][snippets]] custom snippets directory
-  - [[file:snippets/opencl][OpenCL]] custom snippets for /OpenCL/
-  - [[file:snippets/opengl][OpenGL]] custom snippets for /OpenGL/
+  - [[file:snippets/opencl][opencl]] custom snippets for /OpenCL/
+  - [[file:snippets/opengl][opengl]] custom snippets for /OpenGL/
   - [[file:snippets/org-mode][org-mode]] custom snippets for /org-mode/
   - [[file:snippets/shell][shell]] custom snippets for /shell/
-  - [[file:snippets/tex][TeX]] custom snippets for /TeX/
+  - [[file:snippets/tex][tex]] custom snippets for /TeX/
 - [[file:themes/][themes]] custom themes directory
 - [[file:init.el][init.el]] emacs configuration file
 - [[file:link.sh][link.sh]] create symlinks in home directory to the content of =emacs.d= directory
