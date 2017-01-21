@@ -817,13 +817,14 @@
           TeX-PDF-mode t)
     (setq-default TeX-master nil)))
 
-(use-package latex-math-preview
-  :ensure t
-  :commands LaTeX-preview-setup
-  :init
-  (progn
-    (setq-default preview-scale 1.4
-                  preview-scale-function '(lambda () (* (/ 10.0 (preview-document-pt)) preview-scale)))))
+;; Debugger entered--Lisp error: (void-function defstruct)
+;; (use-package latex-math-preview
+;;   :ensure t
+;;   :commands LaTeX-preview-setup
+;;   :init
+;;   (progn
+;;     (setq-default preview-scale 1.4
+;;                   preview-scale-function '(lambda () (* (/ 10.0 (preview-document-pt)) preview-scale)))))
 
 (use-package reftex
   :ensure t
