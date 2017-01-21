@@ -218,15 +218,15 @@
   :init (savehist-mode 1)
   :config (setq savehist-save-minibuffer-history 1))
 
-;; Deprecated: Using helm now.
-;; Built-in: Create a menu item File -> Open recent
-(use-package recentf
-  :init
-  :config
-  (setq recentf-auto-cleanup 'never)
-  (setq recentf-max-menu-items 6)
-  (setq recentf-max-saved-items 6)
-  (recentf-mode 1))
+;; ;; Deprecated: Using helm now.
+;; ;; Built-in: Create a menu item File -> Open recent
+;; (use-package recentf
+;;   :init
+;;   :config
+;;   (setq recentf-auto-cleanup 'never)
+;;   (setq recentf-max-menu-items 6)
+;;   (setq recentf-max-saved-items 6)
+;;   (recentf-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Utils ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
