@@ -57,6 +57,9 @@
 ;; Local Setup ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Enable and press C-g to debug
+;; (setq debug-on-quit t)
+
 ;; Search init file for bugs
 (use-package bug-hunter
   :ensure t)
@@ -357,7 +360,10 @@
   :ensure t
   :defer t
   :config
-  (setq tramp-default-method "ssh"))
+  (setq tramp-default-method "ssh")
+  ;; resolve prolonged initialization
+  (setq tramp-ssh-controlmaster-options
+      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no"))
 
 ;; Built-in
 ;; Example use:
