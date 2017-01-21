@@ -429,9 +429,9 @@
 (use-package rtags
   :ensure t)
 
-;; Tags
-(use-package ctags
-  :ensure t)
+;; ;; Tags
+;; (use-package ctags
+;;   :ensure t)
 
 ;; Syntax checking
 (use-package flycheck
