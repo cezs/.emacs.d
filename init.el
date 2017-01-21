@@ -64,7 +64,6 @@
 ;;; Custom load paths
 (add-to-list 'load-path (concat user-emacs-directory "elisp/"))
 (add-to-list 'load-path (concat user-emacs-directory "fork/"))
-(message "dirs: %s" user-emacs-directory)
 
 (add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes/cs-misterioso-theme.el/"))
 
