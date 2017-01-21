@@ -252,27 +252,27 @@
 ;;   (global-set-key [(meta x)] 'smex)
 ;;   (global-set-key [(shift meta x)] 'smex-major-mode-commands))
 
-(use-package ido
-  :ensure t
-  :config
-  (ido-mode 1)
-  (ido-everywhere 1)
-  (setq ido-use-virtual-buffers t)
-  (setq ido-enable-flex-matching t))
+;; (use-package ido
+;;   :ensure t
+;;   :config
+;;   (ido-mode 1)
+;;   (ido-everywhere 1)
+;;   (setq ido-use-virtual-buffers t)
+;;   (setq ido-enable-flex-matching t))
 
-(use-package ido-ubiquitous
-  :ensure t
-  :config
-  (ido-ubiquitous-mode 1))
+;; (use-package ido-ubiquitous
+;;   :ensure t
+;;   :config
+;;   (ido-ubiquitous-mode 1))
 
-(use-package flx-ido
-  :ensure t)
+;; (use-package flx-ido
+;;   :ensure t)
 
-(use-package ido-vertical-mode
-  :ensure t
-  :config
-  (ido-vertical-mode 1)
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only))
+;; (use-package ido-vertical-mode
+;;   :ensure t
+;;   :config
+;;   (ido-vertical-mode 1)
+;;   (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
 (use-package helm
   :ensure t
