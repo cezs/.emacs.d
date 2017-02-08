@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: cs-org-example
+# key: cs-org-example
+# --
+#+begin_example
+$1
+#+end_example
+$0

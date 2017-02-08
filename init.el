@@ -66,7 +66,10 @@
 
 ;;; Custom load paths
 (add-to-list 'load-path (concat user-emacs-directory "elisp/"))
+(add-to-list 'load-path (concat user-emacs-directory "local/"))
 (add-to-list 'load-path (concat user-emacs-directory "fork/"))
+(add-to-list 'load-path (concat user-emacs-directory "fork/org-9.0.4/lisp"))
+(add-to-list 'load-path (concat user-emacs-directory "fork/org-9.0.4/contrib/lisp") t)
 
 (add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes/cs-misterioso-theme.el/"))
 
@@ -82,18 +85,34 @@
 ;; Uncoditionally kill current buffer 
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
 
+;; Custom data and information
+(use-package cs-local
+  :ensure nil)
+  ;; :defer t
+  ;; ;; :commands (blog-directory blog-href blog-title blog-disqus-shortname)
+  ;; :load-path "local/")
+
+
+;; (defvar blog-directory "~/_local/edu/6/6cs007/work/blog/")
+;; (defvar blog-href "http://mi-linux.wlv.ac.uk/~1427790/final-project/docs/homepage/")
+;; (defvar blog-title "Final Year Project Blog")
+;; (defvar blog-disqus-shortname "cezs")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Layout ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (use-package face-remap+
-;;   :ensure t)
+(use-package face-remap+
+  :disabled t
+  :ensure t)
 
-;; (use-package facemenu+
-;;   :ensure t)
+(use-package facemenu+
+  :disabled t
+  :ensure t)
 
-;; (use-package faces+
-;;   :ensure t)
+(use-package faces+
+  :disabled t
+  :ensure t)
 
 ;; Load theme
 (defadvice load-theme (before theme-dont-propagate activate)
@@ -133,9 +152,10 @@
 (when (fboundp 'set-fringe-mode)
   (set-fringe-mode 0))
 
-;; ;; Line numbers in display margin
-;; (use-package nlinum
-;;   :ensure t)
+;; Line numbers in display margin
+(use-package nlinum
+  :disabled t
+  :ensure t)
 
 ;; Show line-number and column-number in a mode line
 (when (and (fboundp 'line-number-mode)
@@ -167,9 +187,9 @@
   :ensure t
   :config
   (popwin-mode 1))
-  ;; (setq display-buffer-alist 'popwin:display-buffer)
-  ;; (push '("^\*helm .+\*$" :regexp t) popwin:special-display-config)
-  ;; (push '("^\*helm-.+\*$" :regexp t) popwin:special-display-config))
+;; (setq display-buffer-alist 'popwin:display-buffer)
+;; (push '("^\*helm .+\*$" :regexp t) popwin:special-display-config)
+;; (push '("^\*helm-.+\*$" :regexp t) popwin:special-display-config))
 
 ;; Change layout of windows
 (use-package transpose-frame
@@ -181,18 +201,23 @@
          ("M-s f" . rotate-frame-clockwise)
          ("M-s r" . rotate-frame-anticlockwise)))
 
-;; ;; Window manager with IDE like layouts
-;; (use-package e2wm)
-;; (use-package e2wm-direx)
+;; Window manager with IDE like layouts
+(use-package e2wm
+  :disabled t)
 
-;; ;; Different mode lines
-;; (use-package powerline
-;;   :config
-;;   (powerline-default-theme))
+(use-package e2wm-direx
+  :disabled t)
 
-;; ;; Display batery status
-;; (use-package fancy-battery
-;;   :pin melpa-stable)
+;; Different mode lines
+(use-package powerline
+  :disabled t
+  :config
+  (powerline-default-theme))
+
+;; Display batery status
+(use-package fancy-battery
+  :disabled t
+  :pin melpa-stable)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Behaviour ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -209,10 +234,11 @@
   :config
   (setq x-select-enable-clipboard t)) ; Enable Clipboard
 
-;; ;; Built-in: Save current session
-;; (use-package desktop
-;;   :config
-;;   (desktop-save-mode -1)) ; Always save last session?
+;; Built-in: Save current session
+(use-package desktop
+  :disabled t
+  :config
+  (desktop-save-mode -1)) ; Always save last session?
 
 ;; Deprecated: Using helm now.
 ;; Built-in: Save commands history
@@ -220,23 +246,24 @@
   :init (savehist-mode 1)
   :config (setq savehist-save-minibuffer-history 1))
 
-;; ;; Deprecated: Using helm now.
-;; ;; Built-in: Create a menu item File -> Open recent
-;; (use-package recentf
-;;   :init
-;;   :config
-;;   (setq recentf-auto-cleanup 'never)
-;;   (setq recentf-max-menu-items 6)
-;;   (setq recentf-max-saved-items 6)
-;;   (recentf-mode 1))
+;; Deprecated: Using helm now.
+;; Built-in: Create a menu item File -> Open recent
+(use-package recentf 
+  :disabled t
+  :init
+  :config
+  (setq recentf-auto-cleanup 'never)
+  (setq recentf-max-menu-items 6)
+  (setq recentf-max-saved-items 6)
+  (recentf-mode 1))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Utils ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
-;; (use-package o-blog
-;;   :ensure t)
+(use-package o-blog
+  :disabled t
+  :ensure t)
 
 ;; Custom: All custom functions and variables that are to be used in 'any' type of buffer
 (use-package cs-global
@@ -247,34 +274,39 @@
   :config
   (ivy-mode 1))
 
-;; (use-package smex
-;;   :ensure t
-;;   :config
-;;   (smex-initialize)
-;;   (global-set-key [(meta x)] 'smex)
-;;   (global-set-key [(shift meta x)] 'smex-major-mode-commands))
+(use-package smex
+  :disabled t
+  :ensure t
+  :config
+  (smex-initialize)
+  (global-set-key [(meta x)] 'smex)
+  (global-set-key [(shift meta x)] 'smex-major-mode-commands))
 
-;; (use-package ido
-;;   :ensure t
-;;   :config
-;;   (ido-mode 1)
-;;   (ido-everywhere 1)
-;;   (setq ido-use-virtual-buffers t)
-;;   (setq ido-enable-flex-matching t))
+(use-package ido
+  :disabled t
+  :ensure t
+  :config
+  (ido-mode 1)
+  (ido-everywhere 1)
+  (setq ido-use-virtual-buffers t)
+  (setq ido-enable-flex-matching t))
 
-;; (use-package ido-ubiquitous
-;;   :ensure t
-;;   :config
-;;   (ido-ubiquitous-mode 1))
+(use-package ido-ubiquitous
+  :disabled t
+  :ensure t
+  :config
+  (ido-ubiquitous-mode 1))
 
-;; (use-package flx-ido
-;;   :ensure t)
+(use-package flx-ido
+  :disabled t
+  :ensure t)
 
-;; (use-package ido-vertical-mode
-;;   :ensure t
-;;   :config
-;;   (ido-vertical-mode 1)
-;;   (setq ido-vertical-define-keys 'C-n-and-C-p-only))
+(use-package ido-vertical-mode
+  :disabled t
+  :ensure t
+  :config
+  (ido-vertical-mode 1)
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only))
 
 (use-package helm
   :ensure t
@@ -310,29 +342,65 @@
 (use-package bf-mode
   :ensure t
   :after dired
-  :commands (bf-mode)
-  :bind (:map bf-mode-map
-              ("<down>" . bf-mode-next)
-              ("<up>" . bf-mode-previous)))
+  ;; :commands (bf-mode)
+  ;; :bind (:map bf-mode-map
+  ;;             ("<down>" . bf-mode-next)
+  ;;             ("<up>" . bf-mode-previous))
+  :config
+  ;; list up file extensions which should be excepted
+  (setq bf-mode-except-exts
+        (append '("\\.dump$" "\\.data$" "\\.mp3$" "\\.lnk$")
+                bf-mode-except-exts))
+
+  ;; list up file extensions which should be forced browsing
+  (setq bf-mode-force-browse-exts
+        (append '("\\.txt$" "\\.and.more...")
+                bf-mode-force-browse-exts))
+
+  ;; browsable file size maximum
+  (setq bf-mode-browsing-size 100) ;; 100 killo bytes
+
+  ;; browsing htmls with w3m (needs emacs-w3m.el and w3m)
+  (setq bf-mode-html-with-w3m t)
+
+  ;; browsing archive file (contents listing) verbosely
+  (setq bf-mode-archive-list-verbose t)
+
+  ;; browing directory (file listing) verbosely
+  (setq bf-mode-directory-list-verbose t)
+
+  ;; start bf-mode immediately after starting dired
+  (setq bf-mode-enable-at-starting-dired t)
+
+  ;; quitting dired directly from bf-mode
+  (setq bf-mode-directly-quit t))
 
 ;; Preview files in dired with Peep-dired minor mode
 (use-package peep-dired
   :ensure t
-  :after
-  (setq peep-dired-cleanup-eagerly t))
+  :init
+  (add-hook
+   'pre-command-hook
+   (lambda ()
+     (when (eq major-mode 'peep-dired)
+       #'peep-dired-kill-buffers-without-window
+       ))))
+;; :config
+;; (setq peep-dired-cleanup-eagerly t))
 
 ;; Preview files in dired with Ranger mode
 (use-package ranger
   :ensure t
   :defer t)
 
-;; ;; Tree directory/code explorer
-;; (use-package direx
-;;   :after popwin
-;;   :bind ("<C-f2>" . direx:display-item)
-;;   :config
-;;   (push '(direx:direx-mode :position left :width 25 :dedicated t)
-;;       popwin:special-display-config))
+;; Tree directory/code explorer
+(use-package direx
+  :disabled t
+  :after popwin
+  :bind ("<C-f2>" . direx:display-item)
+  :config
+  (push '(direx:direx-mode :position left :width 25 :dedicated t)
+      popwin:special-display-config))
 
 ;; Tree directory/code explorer
 (use-package sr-speedbar
@@ -340,6 +408,22 @@
   :after helm
   :config
   (setq sr-speedbar-right-side nil))
+
+(use-package all-the-icons-dired
+  :ensure t)
+
+(use-package helm-dired-history
+  :ensure t)
+
+(use-package helm-dired-recent-dirs
+  :ensure t)
+
+(use-package look-mode
+  :ensure t)
+
+(use-package look-dired
+  :disabled t
+  :ensure t)
 
 ;; Manage buffers. Replacement for buffer-menu.
 (use-package ibuffer
@@ -363,7 +447,7 @@
   (setq tramp-default-method "ssh")
   ;; resolve prolonged initialization
   (setq tramp-ssh-controlmaster-options
-      "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no"))
+        "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no"))
 
 ;; Built-in
 ;; Example use:
@@ -398,9 +482,11 @@
   :ensure t)
 
 ;; Deprecated: Using helm now.
-;; ;; Locate files
-;; ;; Example use: M-x locate RET <filename>
-;; (use-package locate)
+;; Locate files
+;; Example use: M-x locate RET <filename>
+(use-package locate
+  :disabled t)
+
 
 (use-package simple-httpd
   :ensure t
@@ -412,31 +498,33 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Note: Using helm-gtags instead.
-;; ;; Tags
-;; (use-package ggtags
-;;   :ensure t
-;;   :bind (:map ggtags-mode-map
-;;               ("C-c g s" . ggtags-find-other-symbol)
-;;               ("C-c g h" . ggtags-view-tag-history)
-;;               ("C-c g r" . ggtags-find-reference)
-;;               ("C-c g f" . ggtags-find-file)
-;;               ("C-c g c" . ggtags-create-tags)
-;;               ("C-c g u" . ggtags-update-tags)
-;;               ("M-," . pop-tag-mark))
-;;   :config
-;;   (add-hook 'c-mode-common-hook
-;;             (lambda ()
-;;               (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-;;                 (ggtags-mode 1))))
-;;   (setq-local imenu-create-index-function #'ggtags-build-imenu-index))
+;; Tags
+(use-package ggtags
+  :disabled t
+  :ensure t
+  :bind (:map ggtags-mode-map
+              ("C-c g s" . ggtags-find-other-symbol)
+              ("C-c g h" . ggtags-view-tag-history)
+              ("C-c g r" . ggtags-find-reference)
+              ("C-c g f" . ggtags-find-file)
+              ("C-c g c" . ggtags-create-tags)
+              ("C-c g u" . ggtags-update-tags)
+              ("M-," . pop-tag-mark))
+  :config
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+                (ggtags-mode 1))))
+  (setq-local imenu-create-index-function #'ggtags-build-imenu-index))
 
 ;; Tags
 (use-package rtags
   :ensure t)
 
-;; ;; Tags
-;; (use-package ctags
-;;   :ensure t)
+;; Tags
+(use-package ctags
+  :disabled t
+  :ensure t)
 
 ;; Syntax checking
 (use-package flycheck
@@ -515,17 +603,19 @@
 (use-package company-auctex
   :ensure t)
 
-;; ;; Company completion for bibtex keys
-;; (use-package company-bibtex
-;;   :ensure t)
+;; Company completion for bibtex keys
+(use-package company-bibtex
+  :disabled t
+  :ensure t)
 
 ;; company-mode cabal backend
 (use-package company-cabal
   :ensure t)
 
-;; ;; Erlang/distel completion backend for company-mode
-;; (use-package company-distel
-;;   :ensure t)
+;; Erlang/distel completion backend for company-mode
+(use-package company-distel
+  :disabled t
+  :ensure t)
 
 ;; company-mode backend for eclim
 (use-package company-emacs-eclim
@@ -577,6 +667,7 @@
 
 ;; Auto-complete source for Js2-mode, with navigation
 (use-package ac-js2
+  :disabled t
   :ensure t)
 
 ;; Auto-complete sources for input of mathematical symbols and latex tags
@@ -590,7 +681,6 @@
 ;; gen tags for php
 (use-package ac-php-core
   :ensure t)
-
 
 ;; Auto complete etags?
 (use-package ac-etags
@@ -624,11 +714,13 @@
    helm-gtags-suggested-key-mapping t
    ))
 
-;; (use-package irony
-;;   :defer t)
+(use-package irony
+  :disabled t
+  :defer t)
 
-;; (use-package awk-it
-;;   :defer t)
+(use-package awk-it
+  :disabled t
+  :defer t)
 
 (use-package re-builder+
   :ensure nil
@@ -640,9 +732,29 @@
   :config
   (global-ede-mode))
 
+;; Running word count with goals (minor mode)
+(use-package wc-mode
+  :ensure t
+  :defer t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Major modes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package cmake-mode
+  :ensure t)
+
+(use-package cmake-project
+  :ensure t)
+
+(use-package cmake-ide
+  :ensure t)
+
+(use-package cmake-font-lock
+  :ensure t)
+
+(use-package cuda-mode
+  :ensure t)
 
 (use-package yaml-mode
   :ensure t)
@@ -690,6 +802,7 @@
 
 ;; JavaScript: Major mode
 (use-package js2-mode
+  :disabled t
   :ensure t)
 
 ;; JavaScript: Preview
@@ -701,14 +814,15 @@
 (use-package skewer-mode
   :ensure t
   :config
-  (add-hook 'js2-mode-hook 'skewer-mode)
+  ;; (add-hook 'js2-mode-hook 'skewer-mode)
   (add-hook 'css-mode-hook 'skewer-css-mode)
   (add-hook 'html-mode-hook 'skewer-html-mode))
 
-;; (use-package flymake-jslint
-;;   :after flymake
-;;   :config
-;;   (add-hook 'js-mode-hook 'flymake-jslint-load))
+(use-package flymake-jslint
+  :disabled t
+  :after flymake
+  :config
+  (add-hook 'js-mode-hook 'flymake-jslint-load))
 
 ;; Yasnippets for Java
 (use-package java-snippets
@@ -722,8 +836,9 @@
 
 ;; A better Java mode for Emacs
 ;; http://www.github.com/m0smith/malabar-mode
-;; (use-package malabar-mode
-;;  :ensure t)
+(use-package malabar-mode
+  :disabled t
+  :ensure t)
 
 ;; A better java development mode
 ;; https://github.com/mopemope/meghanada-emacs
@@ -800,7 +915,7 @@
 ;; Charts
 (use-package ox-taskjuggler
   :ensure nil
-  :load-path "fork/")
+  :load-path "fork/org-9.0.4/contrib/lisp/")
 
 ;; Plotting
 (use-package gnuplot-mode
@@ -823,13 +938,14 @@
     (setq-default TeX-master nil)))
 
 ;; Debugger entered--Lisp error: (void-function defstruct)
-;; (use-package latex-math-preview
-;;   :ensure t
-;;   :commands LaTeX-preview-setup
-;;   :init
-;;   (progn
-;;     (setq-default preview-scale 1.4
-;;                   preview-scale-function '(lambda () (* (/ 10.0 (preview-document-pt)) preview-scale)))))
+(use-package latex-math-preview
+  :disabled t
+  :ensure t
+  :commands LaTeX-preview-setup
+  :init
+  (progn
+    (setq-default preview-scale 1.4
+                  preview-scale-function '(lambda () (* (/ 10.0 (preview-document-pt)) preview-scale)))))
 
 (use-package reftex
   :ensure t
@@ -915,6 +1031,9 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
     (setq bibtex-align-at-equal-sign t)
     (add-hook 'bibtex-mode-hook (lambda () (set-fill-column 120)))))
 
+(use-package cdlatex
+  :ensure t)
+
 ;; Org mode: Prolog support
 (use-package ob-prolog
   :ensure t)
@@ -927,19 +1046,29 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
 (use-package ox-man
   :ensure nil
   :defer t
-  :load-path "fork/")
-
-(use-package cdlatex
-  :ensure t)
+  :load-path "fork/org-9.0.4/contrib/lisp/")
 
 (use-package ox-bibtex
   :ensure nil
   :defer t
-  :load-path "fork/")
+  :load-path "fork/org-9.0.4/contrib/lisp/")
+
+(use-package ox-rss
+  :ensure nil
+  :load-path "fork/org-9.0.4/contrib/lisp/")
+
+(use-package ox-html
+  :ensure nil
+  :load-path "fork/org-9.0.4/lisp/")
+
+(use-package ox-publish
+  :ensure nil
+  :load-path "fork/org-9.0.4/lisp/")
 
 ;; Org mode
 (use-package org
   :ensure t
+  :after cs-local
   :bind (("M-C" . jump-to-org-agenda)
          ("M-m" . org-smart-capture)
          ("C-c c" . org-capture)
@@ -949,6 +1078,96 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
          ("C-c l" . org-insert-link)
          ("C-. n" . org-velocity-read))
   :config
+  (defadvice org-rss-headline
+      (around my-rss-headline (headline contents info) activate)
+    "only use org-rss-headline for top level headlines"
+    (if (< (org-export-get-relative-level headline info) 2)
+        ad-do-it
+      (setq ad-return-value (org-html-headline headline contents info))))
+
+  (setq org-publish-project-alist
+        `(("blog"
+           :components ("blog-content" "blog-static" "blog-rss"))
+          ("blog-content"
+           :base-directory ,cs-base-directory
+           :html-extension "html"
+           :base-extension "org"
+           :publishing-directory ,cs-publishing-directory
+           :publishing-function (org-html-publish-to-html)
+           :auto-sitemap t
+           :sitemap-filename "archive.org"
+           :sitemap-title "Archive"
+           :sitemap-sort-files anti-chronologically
+           :sitemap-style list
+           :makeindex t
+           :recursive t
+           :section-numbers nil
+           :with-toc nil
+           :with-latex t
+           :html-head-include-default-style nil
+           :html-head-include-scripts nil
+           :html-head-extra
+           ,(concat 
+           "<link rel=\"alternate\" type=\"appliation/rss+xml\"
+                href=\"" cs-html-link-home "/rss.xml\"
+                title=\"RSS feed for" cs-html-link-home "\">
+          <link href='http://fonts.googleapis.com/css?family=Roboto&subset=latin' rel='stylesheet' type='text/css'>
+          <link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+          <link href= \"static/style.css\" rel=\"stylesheet\" type=\"text/css\" />
+          <title>" cs-title "</title>
+          <meta http-equiv=\"content-type\" content=\"application/xhtml+xml; charset=UTF-8\" />
+          <meta name=\"viewport\" content=\"initial-scale=1,width=device-width,minimum-scale=1\">")
+           :html-preamble
+           ,(concat 
+           "<div class=\"header\">
+              <a href=\"" cs-html-link-home "\">Return to Homepage</a>
+              </div>
+          </div>")
+           :html-postamble
+           (lambda (info)
+             "Do not show disqus for Archive and Recent Posts"
+             (cond ((string= (car (plist-get info :title)) "Archive") "")
+                   ((string= (car (plist-get info :title)) "Recent Posts")
+                    "<div id=\"archive\"><a href=\"archive.html\">Other posts</a></div>")
+                   (t
+                    (concat 
+                    "<div id=\"archive\"><a href=\"archive.html\">Other posts</a></div>
+              <div id=\"disqus_thread\"></div>
+              <script type=\"text/javascript\">
+              /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+              var disqus_shortname = '" cs-blog-disqus-shortname "';
+              /* * * DON'T EDIT BELOW THIS LINE * * */
+              (function() {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the
+                  <a href=\"http://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>
+              <a href=\"http://disqus.com\" class=\"dsq-brlink\">comments powered by <span class=\"logo-disqus\">Disqus</span></a>"))))
+           :exclude "rss.org\\|archive.org\\|theindex.org")
+          ("blog-rss"
+           :base-directory ,cs-base-directory
+           :base-extension "org"
+           :publishing-directory ,cs-publishing-directory
+           :publishing-function (org-rss-publish-to-rss)
+           :html-link-home ,cs-html-link-home
+           :html-link-use-abs-url t
+           :exclude ".*"
+           :include ("rss.org")
+           :with-toc nil
+           :section-numbers nil
+           :title ,cs-title)
+          ("blog-static"
+           :base-directory ,(concat cs-publishing-directory "/static")
+           :base-extension "png\\|jpg\\|css"
+           :publishing-directory ,(concat cs-publishing-directory "/static")
+           :recursive t
+           :publishing-function org-publish-attachment)))
+  ;; (setq org-support-shift-select (quote always))
   (setq flyspell-issue-message-flag nil)
   (defun flyspell-ignore-tex ()
     "Ignore tex commands."
@@ -1013,8 +1232,9 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
         '((auto-mode . emacs)
           ("\\.x?html?\\'" . "firefox %s"))))
 
-;; (use-package org-special-blocks
-;;   :ensure t)
+(use-package org-special-blocks
+  :disabled t
+  :ensure t)
 
 ;; Custom additions to `org-mode'
 (use-package cs-org
@@ -1054,8 +1274,8 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
 (use-package o-blog
   :ensure nil
   :defer t)
-  ;; ;; :commands org-publish-blog
-  ;; :load-path "elisp/o-blog")
+;; ;; :commands org-publish-blog
+;; :load-path "elisp/o-blog")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs scripting tools ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1084,29 +1304,8 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
 ;; (workgroups-mode 1)
 ;; (sr-speedbar-open)
 
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(org-export-backends
-;;    (quote
-;;     (ascii beamer html icalendar latex man md taskjuggler)))
-;;  ;; '(org-modules
-;;  ;;   (quote
-;;  ;;    (org-bbdb org-bibtex org-ctags org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m org-man org-toc)))
-;;   '(org-modules
-;;    (quote
-;;     (org-bbdb org-bibtex org-ctags org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
-
-;;  '(org-support-shift-select (quote always)))
-
-(use-package wc-mode
-  :ensure t
-  :defer t)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Todos ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Overwrite ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defadvice replace-string (around turn-off-case-fold-search)
@@ -1115,5 +1314,8 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
     ad-do-it))
 
 (ad-activate 'replace-string)
+
+(setq c-basic-offset 4)
+(c-set-offset 'substatement-open 0)
 
 ;;; init.el ends here

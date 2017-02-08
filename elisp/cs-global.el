@@ -53,13 +53,19 @@
     (let ((count 1))
       (while (re-search-forward "\\tag{\\([0-9]+\\)}" nil t)
         (replace-match (format "%d" count) nil nil nil 1)
-        (setq count (1+ count)))))
-  )
+        (setq count (1+ count))))))
 
 (defun cs-clear-terminal ()
+  "Clear terminal."
   (interactive)
   (let ((comint-buffer-maximum-size 0))
     (comint-truncate-buffer)))
+
+(defun cs-tangle-and-publish ()
+  "Tangle and publish."
+  (interactive)
+  (org-babel-tangle)
+  (org-publish-all))
 
 (provide 'cs-global)
 
