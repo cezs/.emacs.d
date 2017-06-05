@@ -4,13 +4,15 @@ The =init.el= employs [[https:github.com/jwiegley/use-package][use-package]] for
 The =emacs.d= includes custom [[file:snippets/][snippets]], [[file:elisp/][minor modes and commands]], [[file:dict/][auto-complete mode dictionaries]] and [[file:themes/][themes]].
 
 * Installation
+
 To automatically create symbolic links and backup files in existing =emacs.d= directory, navigate to this repository's directory and use the following script:
 #+begin_example
 $ ./link.sh
 #+end_example
 Note that the backed-up files have appended tilde character at the end of the file names. 
 
-* Definitions
+* Contents
+
 - [[file:dict/][dict]] custom auto-complete dictionaries 
   - [[file:dict/opencl-mode][opencl-mode]] custom auto-complete dictionary for OpenCL
 - [[file:elisp/][elisp]] custom emacs packages and sources
@@ -30,4 +32,5 @@ Note that the backed-up files have appended tilde character at the end of the fi
 - [[file:README.org][README.org]] current file
 
 * Tips
+
 Use the ~pp-macroexpand-last-sexp~ in the [[file:init.el][init.el]] to see macro expansion of the ~use-package~.

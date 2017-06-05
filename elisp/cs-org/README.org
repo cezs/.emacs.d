@@ -1,6 +1,7 @@
 #+title: cs-org.el --- Utilities for Org mode.
 
-* Tips
+* Usage
+
 Use either tangle:
 #+begin_src
 M-x cs-org-babel-tangle-and-open
