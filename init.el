@@ -70,6 +70,7 @@
 (add-to-list 'load-path (concat user-emacs-directory "fork/"))
 (add-to-list 'load-path (concat user-emacs-directory "fork/org-9.0.4/lisp"))
 (add-to-list 'load-path (concat user-emacs-directory "fork/org-9.0.4/contrib/lisp") t)
+(add-to-list 'load-path (concat user-emacs-directory "fork/org-9.0.4/contrib/lisp"))
 
 (add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes/cs-misterioso-theme.el/"))
 
@@ -319,7 +320,7 @@
   :ensure nil
   :config
   ;; Press 'a' to access directory or file, without opening new buffer.
-  (put 'dired-find-alternate-file 'disabled nil))
+  )
 
 ;; Tree like expansion in Dired
 (use-package dired-subtree
@@ -385,8 +386,8 @@
      (when (eq major-mode 'peep-dired)
        #'peep-dired-kill-buffers-without-window
        ))))
-;; :config
-;; (setq peep-dired-cleanup-eagerly t))
+  ;; :config
+  ;; (setq peep-dired-cleanup-eagerly t))
 
 ;; Preview files in dired with Ranger mode
 (use-package ranger
@@ -406,7 +407,9 @@
 (use-package sr-speedbar
   :ensure t
   :after helm
+  :bind (("C-c b t" . sr-speedbar-toggle))
   :config
+  (setq speedbar-show-unknown-files t)
   (setq sr-speedbar-right-side nil))
 
 (use-package all-the-icons-dired
@@ -575,13 +578,16 @@
   :init (add-hook 'prog-mode-hook #'yas-minor-mode)
   :config
   ;; Use parent major mode's indentation instead
-  (setq yas-also-auto-indent-first-line t))
-;; ;; Reload immediately
-;; (yas-reload-all))
+  (setq yas-also-auto-indent-first-line t)
+  ;; Reload immediately
+  (yas-reload-all))
 
 ;; Auto completion backend
 (use-package company
-  :ensure t)
+  :ensure t
+  :config
+  ;; (add-hook 'after-init-hook 'global-company-mode)
+  (add-to-list 'company-backends 'company-c-headers))
 
 ;; A backend that emulates ac-source-dictionary
 (use-package company-dict
@@ -641,9 +647,10 @@
 (use-package auto-complete
   :ensure t
   :config
-  (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict")
-  ;; Enable minor mode in all buffers by default
-  (ac-config-default))
+  (add-hook 'after-init-hook 'auto-complete-mode)
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/dict"))
+  ;; ;; Enable minor mode in all buffers by default
+  ;; (ac-config-default))
 
 ;; auto-complete source with completion-at-point
 (use-package ac-capf
@@ -699,12 +706,7 @@
               ("M-g M-p" . helm-gtags-parse-file)
               ("C-c <" . helm-gtags-previous-history)
               ("C-c >" . helm-gtags-next-history))
-  :config
-  (add-hook 'dired-mode-hook 'helm-gtags-mode)
-  (add-hook 'eshell-mode-hook 'helm-gtags-mode)
-  (add-hook 'c-mode-hook 'helm-gtags-mode)
-  (add-hook 'c++-mode-hook 'helm-gtags-mode)
-  (add-hook 'asm-mode-hook 'helm-gtags-mode)
+  :init
   (setq
    helm-gtags-ignore-case t
    helm-gtags-auto-update t
@@ -712,7 +714,12 @@
    helm-gtags-pulse-at-cursor t
    helm-gtags-prefix-key "\C-cg"
    helm-gtags-suggested-key-mapping t
-   ))
+   )
+  (add-hook 'dired-mode-hook 'helm-gtags-mode)
+  (add-hook 'eshell-mode-hook 'helm-gtags-mode)
+  (add-hook 'c-mode-hook 'helm-gtags-mode)
+  (add-hook 'c++-mode-hook 'helm-gtags-mode)
+  (add-hook 'asm-mode-hook 'helm-gtags-mode))
 
 (use-package irony
   :disabled t
@@ -1065,6 +1072,41 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
   :ensure nil
   :load-path "fork/org-9.0.4/lisp/")
 
+(use-package ox-extra
+  :config
+  (ox-extras-activate '(ignore-headlines)))
+
+(use-package ox-latex
+  :config
+  (defun my-latex-export-example-blocks (text backend info)
+    "Export example blocks as listings env."
+    (when (org-export-derived-backend-p backend 'latex)
+      (with-temp-buffer
+        (insert text)
+        ;; replace verbatim env by listings
+        (goto-char (point-min))
+        (replace-string "\\begin{verbatim}" "\\begin{lstlisting}")
+        (replace-string "\\end{verbatim}" "\\end{lstlisting}")
+        (buffer-substring-no-properties (point-min) (point-max)))))
+  (add-to-list 'org-export-filter-example-block-functions
+               'my-latex-export-example-blocks)
+  (setq org-latex-caption-above nil)
+  (setq org-latex-pdf-process
+        '("pdflatex -interaction nonstopmode -output-directory %o %f"
+          "makeglossaries %b"
+          "biber %b"
+          "pdflatex -interaction nonstopmode -output-directory %o %f"
+          "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  (add-to-list 'org-latex-classes
+               '("org-report"
+                 "\\documentclass{report}"
+                 ("\\chapter{%s}" . "\\chapter*{%s}")
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
 ;; Org mode
 (use-package org
   :ensure t
@@ -1196,7 +1238,16 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
                                ;; (R . t)
                                ;; (sml . t)
                                (emacs-lisp . t)))
+  (add-to-list 'org-latex-packages-alist '("" "listingsutf8"))
   :init
+  ;; (setq org-export-latex-classes
+  ;;            '("article"
+  ;;              "\\documentclass{article}"
+  ;;              ("\\section{%s}" . "\\section*{%s}")
+  ;;              ("\\subsection{%s}" . "\\subsection*{%s}")
+  ;;              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+  ;;              ("\\paragraph{%s}" . "\\paragraph*{%s}")
+  ;;              ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   (setq org-deadline-warning-days 365)
   ;; (setq org-agenda-todo-list-sublevels t)
   (setq org-agenda-todo-ignore-with-date t)
@@ -1317,5 +1368,12 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
 
 (setq c-basic-offset 4)
 (c-set-offset 'substatement-open 0)
+
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
+
+(semantic-mode 1)
+(put 'dired-find-alternate-file 'disabled nil)
+(set-face-attribute 'default nil :height 100)
 
 ;;; init.el ends here
