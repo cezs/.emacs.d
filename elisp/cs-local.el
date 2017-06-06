@@ -29,11 +29,14 @@
 
 ;;; Code:
 
-(defvar cs-base-directory "~/_local/edu/6/6cs007/work/docs/homepage/blog/posts")
-(defvar cs-publishing-directory "~/_local/edu/6/6cs007/work/docs/homepage/blog/publish")
-(defvar cs-html-link-home "http://mi-linux.wlv.ac.uk/~1427790/final-project/docs/homepage")
-(defvar cs-title "Final Year Project Blog")
-(defvar cs-blog-disqus-shortname "cezs")
+(defvar cs-base-directory "posts")
+(defvar cs-publishing-directory "publish")
+(defvar cs-html-link-home "www.my.webpage")
+(defvar cs-title "My Title")
+(defvar cs-blog-disqus-shortname "my_disqus_name")
+
+(defvar cs-org-default-notes-file "notes.org")
+(defvar cs-org-agenda-files "agenda.org")
 
 (provide 'cs-local)
 

@@ -1229,6 +1229,8 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
                                ;; (sml . t)
                                (emacs-lisp . t)))
   (add-to-list 'org-latex-packages-alist '("" "listingsutf8"))
+  (setq org-default-notes-file cs-org-default-notes-file)
+  (setq org-agenda-files cs-org-agenda-files)
   :init
   ;; (setq org-export-latex-classes
   ;;            '("article"
@@ -1267,8 +1269,6 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
   (setq org-support-shift-select t)
   (setq org-startup-folded nil)
   (setq org-default-notes-file nil)
-  (setq org-default-notes-file cs-org-agenda-files)
-  (setq org-agenda-files cs-org-agenda-files)
   (setq org-file-apps
         '((auto-mode . emacs)
           ("\\.x?html?\\'" . "firefox %s"))))
