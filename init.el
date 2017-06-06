@@ -66,7 +66,6 @@
 
 ;;; Custom load paths
 (add-to-list 'load-path (concat user-emacs-directory "elisp/"))
-(add-to-list 'load-path (concat user-emacs-directory "local/"))
 (add-to-list 'load-path (concat user-emacs-directory "fork/"))
 (add-to-list 'load-path (concat user-emacs-directory "fork/org-9.0.4/lisp"))
 (add-to-list 'load-path (concat user-emacs-directory "fork/org-9.0.4/contrib/lisp") t)
@@ -89,15 +88,6 @@
 ;; Custom data and information
 (use-package cs-local
   :ensure nil)
-  ;; :defer t
-  ;; ;; :commands (blog-directory blog-href blog-title blog-disqus-shortname)
-  ;; :load-path "local/")
-
-
-;; (defvar blog-directory "~/_local/edu/6/6cs007/work/blog/")
-;; (defvar blog-href "http://mi-linux.wlv.ac.uk/~1427790/final-project/docs/homepage/")
-;; (defvar blog-title "Final Year Project Blog")
-;; (defvar blog-disqus-shortname "cezs")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Layout ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1277,8 +1267,8 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
   (setq org-support-shift-select t)
   (setq org-startup-folded nil)
   (setq org-default-notes-file nil)
-  (setq org-default-notes-file (concat "../Documents/doc/org/" "Notes.org"))
-  (setq org-agenda-files (quote ("~/_local/note/org/Nizer.org")))
+  (setq org-default-notes-file cs-org-agenda-files)
+  (setq org-agenda-files cs-org-agenda-files)
   (setq org-file-apps
         '((auto-mode . emacs)
           ("\\.x?html?\\'" . "firefox %s"))))
