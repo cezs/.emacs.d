@@ -1,13 +1,70 @@
-#+title: cs-org.el --- Utilities for Org mode.
+#+title: cs-org.el
+
+Utilities for Org mode.
 
 * Usage
 
-Use either tangle:
-#+begin_src
+** Public
+
+*** Tangle and open
+
+#+begin_example
 M-x cs-org-babel-tangle-and-open
 M-x eval-buffer
+#+end_example
+
+*** Remove files generated with org from current directory
+
+#+begin_example
+M-x cs-org-delete-generated-files
+#+end_example
+
+
+*** Use single Org file to prepare multi-file Emacs package archive
+
+Sources inside org file have to be annotated as follows,
+#+begin_example
+#+begin_src <your-language> :tangle yes :exports code :comments link
+  <your-code>
 #+end_src
-Or
-#+begin_src
-M-x cs-org-file-to-emacs-package-with-install
-#+end_src
+#+end_example
+where =:comments link= is required for detangling.
+
+Run the following command in order to build the package archive 
+with the optional installation.
+#+begin_example
+M-x cs-org-file-to-emacs-package
+#+end_example
+
+** Private
+
+*** Copy regexped elisp files starting with name P to directory D
+
+#+begin_example
+(cs-copy-all-elisp-files-starting-with-to-dir (p d))
+#+end_example
+
+
+*** Delete regexped elisp files starting with name P
+
+#+begin_example
+(cs-delete-all-elisp-files-starting-with (p))
+#+end_example
+
+
+*** Move regexped elisp files starting with name P to directory D
+
+#+begin_example
+(cs-move-all-elisp-files-starting-with-to-dir (p d))
+#+end_example
+
+
+*** Recursively remove directory with files
+
+#+begin_example
+(cs-clean-up (d))
+#+end_example
+
+* License
+
+You should have received a copy of the GNU General Public License along with this program.  If not, see http://www.gnu.org/licenses/.

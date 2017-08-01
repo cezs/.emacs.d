@@ -29,7 +29,6 @@
 
 ;;; Code:
 
-;; TODO: Replace shell usage with more native code
 (defun cs-org-babel-tangle-and-open ()
   "Tangle and open."
   (interactive)
@@ -38,7 +37,7 @@
              (find-file (concat (substring (buffer-file-name) 0 -3) "el")))
     (error "Run it from buffer in org mode")))
 
-;; TODO: Replace shell usage with more native code
+;; TODO: Replace shell usage with elisp
 (defun cs-org-delete-generated-files ()
   "Use find to clean directory from files generated with org."
   (interactive)
@@ -148,8 +147,7 @@ where \":comments link\" is optional/required for detangling."
   (cs-delete-all-elisp-files-starting-with p))
 
 (defun cs-clean-up (d)
-  "Recursively remove directory with files.
-Input: D - directory"
+  "Recursively remove directory D with files."
   (delete-directory d t))
 
 (provide 'cs-org)
