@@ -1,0 +1,3 @@
+[submodule "elisp/cs-org"]
+	path = elisp/cs-org
+	url = https://github.com/cezs/cs-org.el
