@@ -67,9 +67,9 @@
 ;;; Custom load paths
 (add-to-list 'load-path (concat user-emacs-directory "elisp/"))
 (add-to-list 'load-path (concat user-emacs-directory "fork/"))
-(add-to-list 'load-path (concat user-emacs-directory "fork/org-9.0.4/lisp"))
-(add-to-list 'load-path (concat user-emacs-directory "fork/org-9.0.4/contrib/lisp") t)
-(add-to-list 'load-path (concat user-emacs-directory "fork/org-9.0.4/contrib/lisp"))
+(add-to-list 'load-path (concat user-emacs-directory "fork/org-mode/lisp"))
+(add-to-list 'load-path (concat user-emacs-directory "fork/org-mode/contrib/lisp") t)
+(add-to-list 'load-path (concat user-emacs-directory "fork/org-mode/contrib/lisp"))
 
 (add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes/cs-misterioso-theme.el/"))
 
@@ -912,7 +912,7 @@
 ;; Charts
 (use-package ox-taskjuggler
   :ensure nil
-  :load-path "fork/org-9.0.4/contrib/lisp/")
+  :load-path "fork/org-mode/contrib/lisp/")
 
 ;; Plotting
 (use-package gnuplot-mode
@@ -1043,24 +1043,24 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
 (use-package ox-man
   :ensure nil
   :defer t
-  :load-path "fork/org-9.0.4/contrib/lisp/")
+  :load-path "fork/org-mode/contrib/lisp/")
 
 (use-package ox-bibtex
   :ensure nil
   :defer t
-  :load-path "fork/org-9.0.4/contrib/lisp/")
+  :load-path "fork/org-mode/contrib/lisp/")
 
 (use-package ox-rss
   :ensure nil
-  :load-path "fork/org-9.0.4/contrib/lisp/")
+  :load-path "fork/org-mode/contrib/lisp/")
 
 (use-package ox-html
   :ensure nil
-  :load-path "fork/org-9.0.4/lisp/")
+  :load-path "fork/org-mode/lisp/")
 
 (use-package ox-publish
   :ensure nil
-  :load-path "fork/org-9.0.4/lisp/")
+  :load-path "fork/org-mode/lisp/")
 
 (use-package ox-extra
   :config
