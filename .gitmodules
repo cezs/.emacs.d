@@ -1,3 +1,6 @@
 [submodule "elisp/cs-org"]
 	path = elisp/cs-org
 	url = https://github.com/cezs/cs-org.el
+[submodule "fork/org-mode"]
+	path = fork/org-mode
+	url = https://github.com/jwiegley/org-mode.git
