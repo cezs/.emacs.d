@@ -68,7 +68,6 @@
 (add-to-list 'load-path (concat user-emacs-directory "elisp/"))
 (add-to-list 'load-path (concat user-emacs-directory "fork/"))
 (add-to-list 'load-path (concat user-emacs-directory "fork/org-mode/lisp"))
-(add-to-list 'load-path (concat user-emacs-directory "fork/org-mode/contrib/lisp") t)
 (add-to-list 'load-path (concat user-emacs-directory "fork/org-mode/contrib/lisp"))
 
 (add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes/cs-misterioso-theme.el/"))
@@ -322,11 +321,15 @@
 
 ;; Sort files in dired
 (use-package dired-sort
-  :ensure t
-  :after dired)
-(use-package dired-sort-menu
-  :ensure t
-  :after dired)
+  :ensure nil
+  :defer t
+  :after dired
+  :load-path "fork/")
+(use-package dired-sort-menu+
+  :ensure nil
+  :defer t
+  :after dired
+  :load-path "fork/")
 
 ;; Preview and edit files in dired without leaving
 ;; open buffer when moving to next file.
@@ -1063,6 +1066,8 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
   :load-path "fork/org-mode/lisp/")
 
 (use-package ox-extra
+  :ensure nil
+  :defer true
   :config
   (ox-extras-activate '(ignore-headlines)))
 
