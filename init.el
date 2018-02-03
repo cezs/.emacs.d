@@ -754,7 +754,8 @@
   :ensure t)
 
 (use-package cuda-mode
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (use-package yaml-mode
   :ensure t)
@@ -1067,7 +1068,7 @@ Use 'C-c (' instead of 'C-c [' because the latter is already defined in orgmode 
 
 (use-package ox-extra
   :ensure nil
-  :defer true
+  :defer t
   :config
   (ox-extras-activate '(ignore-headlines)))
 
