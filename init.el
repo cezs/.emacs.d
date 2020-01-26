@@ -1,8 +1,8 @@
 ;;; init.el --- Emacs Configuration
 
-;; Copyright (C) 2016-2017 Cezary Stankiewicz
+;; Copyright (C) 2016-2017 cezs
 
-;; Maintainer: Cezary Stankiewicz (concat "c.stankiewicz" "@" "wlv.ac.uk")
+;; Maintainer: cezs (concat "cezs.uk")
 ;; Keywords: convenience
 
 ;; This file is not part of GNU Emacs.
